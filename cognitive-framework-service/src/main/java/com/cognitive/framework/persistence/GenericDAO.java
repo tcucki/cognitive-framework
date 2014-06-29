@@ -3,15 +3,18 @@ package com.cognitive.framework.persistence;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import com.cognitive.framework.servicelocator.ServiceLocator;
 
 public abstract class GenericDAO <E, I> {
 
 	private Class<E> clazz;
 
-	@PersistenceContext
+//	@PersistenceContext
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
@@ -23,6 +26,11 @@ public abstract class GenericDAO <E, I> {
 			this.clazz = (Class<E>) ((ParameterizedType) getClass().getSuperclass().getGenericSuperclass()).getActualTypeArguments()[0];
 		}
 		//(Class<E>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
+	
+	@PostConstruct
+	private void setup() {
+		this.entityManager = ServiceLocator.getResource("java:jboss/exported/persistence/newsreader-persistence-unit", EntityManager.class);
 	}
 	
 	public E find(I id) {

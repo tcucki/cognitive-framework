@@ -23,6 +23,11 @@ public class ServiceLocator {
 		return getInstance().lookupService(service, serviceName, moduleName, environment, application, interfaceName);
 	}
 	
+	public static <T> T getResource(String resourceName, Class<T> clazz) {
+		
+		return getInstance().lookupResource(resourceName, clazz);
+	}
+
 	private static ServiceLocator getInstance() {
 		if (instance == null) {
 			instance = new ServiceLocator();
@@ -57,6 +62,17 @@ public class ServiceLocator {
 		}
 		try {
 			return (T) this.context.lookup(name);
+		} catch (NamingException e) {
+			throw new CognitiveRuntimeException(e); 
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private <T> T lookupResource(String resourceName, Class<T> cazz) {
+
+		try {
+			System.out.println(this.context.getEnvironment());
+			return (T) this.context.lookup(resourceName);
 		} catch (NamingException e) {
 			throw new CognitiveRuntimeException(e); 
 		}
