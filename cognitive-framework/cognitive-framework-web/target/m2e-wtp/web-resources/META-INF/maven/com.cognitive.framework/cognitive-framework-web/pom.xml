@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.cognitive.framework</groupId>
+    <artifactId>cognitive-framework</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>cognitive-framework-web</artifactId>
+  <name>cognitive-framework-web</name>
+  <description>Cognitive Framework Web JSF project</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.jboss.spec.javax.faces</groupId>
+  		<artifactId>jboss-jsf-api_2.2_spec</artifactId>
+  	</dependency>
+	<dependency>
+		<groupId>org.jboss.spec</groupId>
+		<artifactId>jboss-javaee-7.0</artifactId>
+		<type>pom</type>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.richfaces.ui</groupId>
+		<artifactId>richfaces-components-ui</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.richfaces.core</groupId>
+		<artifactId>richfaces-core-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>com.cognitive.framework</groupId>
+		<artifactId>cognitive-framework-client</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-lang</groupId>
+		<artifactId>commons-lang</artifactId>
+	</dependency>
+  </dependencies>
+  <packaging>war</packaging>
+</project> 

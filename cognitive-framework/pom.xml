@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cognitive.framework</groupId>
+  <artifactId>cognitive-framework</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>cognitive-framework</name>
+  <packaging>pom</packaging>
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <!-- maven-compiler-plugin -->
+      <maven.compiler.target>1.7</maven.compiler.target>
+      <maven.compiler.source>1.7</maven.compiler.source>
+      <cdi-api-version>1.2</cdi-api-version>
+  </properties>
+  <dependencyManagement>
+  	<!-- *********** each ear module should be here (client, service, war, ejb, persistence, etc)
+  			??? not needed anymore ??? -->
+  	<dependencies>
+	 <dependency>
+		<groupId>org.hibernate.javax.persistence</groupId>
+		<artifactId>hibernate-jpa-2.1-api</artifactId>
+ 		<version>1.0.0.Final</version>
+ 	 </dependency>
+	 <!-- Import the CDI API -->
+	 <dependency>
+	     <groupId>javax.enterprise</groupId>
+	     <artifactId>cdi-api</artifactId>
+	     <scope>provided</scope>
+	     <version>${cdi-api-version}</version>
+	 </dependency>
+	 <!-- Import the Common Annotations API (JSR-250) -->
+	 <dependency>
+	     <groupId>org.jboss.spec.javax.annotation</groupId>
+	     <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+	     <scope>provided</scope>
+	     <version>1.0.0.Final</version>
+	 </dependency>
+	  	<dependency>
+	  		<groupId>org.hibernate.ogm</groupId>
+	  		<artifactId>hibernate-ogm-mongodb</artifactId>
+	  		<version>4.1.0.Beta4</version>
+	  	</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-7.0</artifactId>
+			<version>1.0.0.Final</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
+			<version>2.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.richfaces</groupId>
+			<artifactId>richfaces-bom</artifactId>
+			<version>4.3.7.Final</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+  <distributionManagement>
+  	<!-- **** ????? **** -->
+  </distributionManagement>
+  <modules>
+  	<module>cognitive-framework-app</module>
+  	<module>cognitive-framework-client</module>
+  	<module>cognitive-framework-service</module>
+  	<module>cognitive-framework-web</module>
+  </modules>
+</project>
