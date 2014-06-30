@@ -71,7 +71,6 @@ public class ServiceLocator {
 	private <T> T lookupResource(String resourceName, Class<T> cazz) {
 
 		try {
-			System.out.println(this.context.getEnvironment());
 			return (T) this.context.lookup(resourceName);
 		} catch (NamingException e) {
 			throw new CognitiveRuntimeException(e); 

@@ -5,21 +5,19 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.cognitive.framework.servicelocator.ServiceLocator;
+import com.cognitive.framework.util.SystemConfiguration;
 
 public abstract class GenericDAO <E, I> {
 
 	private Class<E> clazz;
 
-//	@PersistenceContext
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public GenericDAO() {
-		// TODO Auto-generated constructor stub
 		if (getClass().getSuperclass().equals(GenericDAO.class)) {
 			this.clazz = (Class<E>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		} else {
@@ -30,7 +28,8 @@ public abstract class GenericDAO <E, I> {
 	
 	@PostConstruct
 	private void setup() {
-		this.entityManager = ServiceLocator.getResource("java:jboss/exported/persistence/newsreader-persistence-unit", EntityManager.class);
+		String entityManagerResourceName = SystemConfiguration.get("ENTITY_MANAGER_RESOURCE_NAME");
+		this.entityManager = ServiceLocator.getResource(entityManagerResourceName, EntityManager.class);
 	}
 	
 	public E find(I id) {
