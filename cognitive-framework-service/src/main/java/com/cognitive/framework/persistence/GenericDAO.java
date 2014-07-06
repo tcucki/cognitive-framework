@@ -4,7 +4,6 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.mail.internet.NewsAddress;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -55,10 +54,10 @@ public abstract class GenericDAO <E, I> {
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() {
 		Query query = entityManager.createQuery(
-				"from NewsSource e"
-				//"db.newssource.find();"
-				//"select e from " + clazz.getSimpleName() + " e order by e.id desc"
+				// new way for NoSQL
+				"from " + clazz.getSimpleName() + " e order by e.id desc"
 				);
+		//"select e from " + clazz.getSimpleName() + " e order by e.id desc" old way for relational databases
 		
 		return query.getResultList();    
 	}
